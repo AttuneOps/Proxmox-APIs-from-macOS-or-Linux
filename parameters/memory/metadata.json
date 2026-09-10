@@ -1,4 +1,10 @@
 {
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text", 
+            "value": "4096"
+        }
+    ], 
     "externalUuid4": "606a3d11-118b-412c-8972-3076d46547cf", 
     "key": "memory", 
     "name": "Memory", 

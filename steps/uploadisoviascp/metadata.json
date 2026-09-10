@@ -5,9 +5,9 @@
     "interpreter": 1, 
     "key": "uploadisoviascp", 
     "name": "Upload ISO via scp", 
-    "osCredKey": "automationworkeruser", 
+    "osCredKey": "linuxworkeruser", 
     "promptResponses": "password:==={proxmoxUser.password}", 
-    "serverKey": "automationworkernode", 
+    "serverKey": "linuxworker", 
     "successExitCode": 0, 
     "type": "com.servertribe.attune.tuples.StepSshPromptedTuple"
 }

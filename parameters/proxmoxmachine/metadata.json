@@ -1,0 +1,16 @@
+{
+    "defaultValue": [
+        {
+            "domain": "localdomain", 
+            "hostname": "localhost", 
+            "ip": "127.0.0.1", 
+            "sshPort": 22, 
+            "type": "attune.parameter.default.LinuxServer"
+        }
+    ], 
+    "externalUuid4": "db9bcaed-c577-4bd9-a6a2-8c3605909731", 
+    "key": "proxmoxmachine", 
+    "name": "Proxmox Machine", 
+    "showInPlan": true, 
+    "type": "c.s.s.b.phv.LinuxServer"
+}

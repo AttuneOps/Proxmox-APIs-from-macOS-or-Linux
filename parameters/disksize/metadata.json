@@ -1,4 +1,10 @@
 {
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text", 
+            "value": "32"
+        }
+    ], 
     "externalUuid4": "88a0ce58-4bb5-4cd0-b6a7-0b504c7510b3", 
     "key": "disksize", 
     "name": "Disk Size", 

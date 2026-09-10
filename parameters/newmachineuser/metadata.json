@@ -1,7 +1,8 @@
 {
+    "defaultValue": [], 
     "externalUuid4": "ae154a8a-dfc3-4184-9969-2c5e0cf013eb", 
-    "key": "newosuser", 
-    "name": "New OS User", 
+    "key": "newmachineuser", 
+    "name": "New Machine User", 
     "showInPlan": true, 
     "type": "c.s.s.b.phv.OsCred"
 }

@@ -1,7 +1,0 @@
-{
-    "externalUuid4": "db9bcaed-c577-4bd9-a6a2-8c3605909731", 
-    "key": "proxmoxnode", 
-    "name": "Proxmox Node", 
-    "showInPlan": true, 
-    "type": "c.s.s.b.phv.LinuxServer"
-}

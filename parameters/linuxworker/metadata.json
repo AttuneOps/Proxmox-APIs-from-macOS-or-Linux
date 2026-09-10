@@ -1,0 +1,16 @@
+{
+    "defaultValue": [
+        {
+            "domain": "localdomain", 
+            "hostname": "localhost", 
+            "ip": "127.0.0.1", 
+            "sshPort": 22, 
+            "type": "attune.parameter.default.LinuxServer"
+        }
+    ], 
+    "externalUuid4": "4584e1dc-e47f-4d70-8667-137d3eb8e3ba", 
+    "key": "linuxworker", 
+    "name": "Linux Worker", 
+    "showInPlan": true, 
+    "type": "c.s.s.b.phv.LinuxServer"
+}

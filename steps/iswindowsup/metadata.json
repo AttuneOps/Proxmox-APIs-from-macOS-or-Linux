@@ -7,7 +7,7 @@
     "name": "Is Windows up", 
     "postWait": 0, 
     "preWait": 0, 
-    "serverKey": "newosnode", 
+    "serverKey": "newmachine", 
     "tcpPort": 5986, 
     "type": "com.servertribe.attune.tuples.StepTcpPingTuple"
 }

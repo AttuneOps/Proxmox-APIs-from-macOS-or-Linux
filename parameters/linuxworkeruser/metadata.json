@@ -1,7 +1,8 @@
 {
+    "defaultValue": [], 
     "externalUuid4": "066e4d9a-102b-4d6f-ad43-30cb878c2c57", 
-    "key": "automationworkeruser", 
-    "name": "Automation Worker User", 
+    "key": "linuxworkeruser", 
+    "name": "Linux Worker User", 
     "showInPlan": true, 
     "type": "c.s.s.b.phv.LinOsCred"
 }

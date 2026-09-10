@@ -6,7 +6,7 @@
     "key": "startvirtualmachine", 
     "name": "Start Virtual Machine", 
     "osCredKey": "proxmoxuser", 
-    "serverKey": "proxmoxnode", 
+    "serverKey": "proxmoxmachine", 
     "successExitCode": 0, 
     "type": "com.servertribe.attune.tuples.StepSshTuple"
 }

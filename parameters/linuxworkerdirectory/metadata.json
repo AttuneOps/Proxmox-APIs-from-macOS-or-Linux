@@ -1,0 +1,13 @@
+{
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text", 
+            "value": "/tmp/attune/"
+        }
+    ], 
+    "externalUuid4": "d559daaf-aece-4473-9c7d-38cda2c7ba42", 
+    "key": "linuxworkerdirectory", 
+    "name": "Linux Worker Directory", 
+    "showInPlan": true, 
+    "type": "c.s.s.b.phv.Text"
+}

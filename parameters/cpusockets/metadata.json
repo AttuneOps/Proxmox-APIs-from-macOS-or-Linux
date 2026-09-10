@@ -1,4 +1,10 @@
 {
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text", 
+            "value": "2"
+        }
+    ], 
     "externalUuid4": "0988ee01-fb0f-4e0a-9753-816b6321be4f", 
     "key": "cpusockets", 
     "name": "CPU Sockets", 

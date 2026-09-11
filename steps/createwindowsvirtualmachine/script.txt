@@ -1,5 +1,5 @@
 VM_NAME='{newMachine.fqn}'
-ISO_VOLID='local:iso/kickstart_{newMachine.fqn}.iso'
+ISO_VOLID='local:iso/unattended_{newMachine.fqn}.iso'
 
 EXISTING_VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
 

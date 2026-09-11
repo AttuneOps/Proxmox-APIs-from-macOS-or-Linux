@@ -1,0 +1,8 @@
+{
+    "externalUuid4": "606a3d11-118b-412c-8972-3076d46547cf",
+    "key": "vmmemorygb",
+    "name": "VM Memory (GB)",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.Text",
+    "comment": "RAM in GB. Scripts multiply by 1024 for Proxmox MiB."
+}

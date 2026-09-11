@@ -1,0 +1,14 @@
+{
+    "externalUuid4": "d559daaf-aece-4473-9c7d-38cda2c7ba42",
+    "key": "workerdirectory",
+    "name": "Worker Directory",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.Text",
+    "comment": "Directory on the worker for ISO build trees, driver drop, and the ISO file.",
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text",
+            "value": "/opt/attune"
+        }
+    ]
+}

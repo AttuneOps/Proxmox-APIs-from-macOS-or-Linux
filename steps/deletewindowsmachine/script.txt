@@ -1,0 +1,23 @@
+VM_NAME="{newWindowsMachine.fqn}"
+
+VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
+
+if [[ -z "$VMID" ]]; then
+    echo "VM '$VM_NAME' does not exist"
+    exit 0
+fi
+
+echo "Found VM '$VM_NAME' with VMID: $VMID"
+
+STATUS=$(qm status $VMID | grep -oP '(?<=status: )\w+')
+
+if [[ "$STATUS" == "running" ]]; then
+    echo "Stopping VM $VMID"
+    qm stop $VMID
+    sleep 10
+fi
+
+echo "Deleting VM $VMID"
+qm destroy $VMID
+
+echo "VM $VMID deleted successfully"

@@ -1,8 +1,8 @@
-VM_NAME="{newMachine.fqn}"
-PVE_HOST="{proxmoxMachine.ip}"
-ISO="unattended_{newMachine.fqn}.iso"
-ISO_PATH="{linuxWorkerDirectory}/$ISO"
-PROXMOX_USER="{proxmoxUser.user}"
+VM_NAME="{newWindowsMachine.fqn}"
+PVE_HOST="{proxmox.ip}"
+ISO="unattended_{newWindowsMachine.fqn}.iso"
+ISO_PATH="{workerDirectory}/$ISO"
+PROXMOX_USER="{proxmoxLogin.user}"
 
 if [[ ! -f "$ISO_PATH" ]]; then
     echo "Error: ISO file not found: $ISO_PATH"

@@ -1,0 +1,14 @@
+{
+    "externalUuid4": "d1469744-036c-4716-8ed2-494f7889682c",
+    "key": "newlinuxmachine",
+    "name": "New Linux Machine",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.LinuxServer",
+    "comment": "The Linux/Unix machine (or VM) being installed. FQN names the VM and the ISO.",
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.LinuxServer",
+            "sshPort": 22
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "externalUuid4": "88a0ce58-4bb5-4cd0-b6a7-0b504c7510b3",
+    "key": "vmdiskgb",
+    "name": "VM Disk (GB)",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.Text",
+    "comment": "Disk size in GB."
+}

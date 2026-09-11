@@ -1,0 +1,8 @@
+{
+    "externalUuid4": "ae154a8a-dfc3-4184-9969-2c5e0cf013eb",
+    "key": "newlinuxuser",
+    "name": "New Linux User",
+    "showInPlan": false,
+    "type": "c.s.s.b.phv.LinOsCred",
+    "comment": "Non-privileged user created on the new Linux OS."
+}

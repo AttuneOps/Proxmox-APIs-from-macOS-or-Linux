@@ -1,0 +1,14 @@
+{
+    "externalUuid4": "bf6dedad-6f7b-4788-b32b-d888a9731c96",
+    "key": "vmnetwork",
+    "showInPlan": true,
+    "name": "VM Network",
+    "type": "c.s.s.b.phv.Text",
+    "comment": "Proxmox bridge / port-group name used when creating the VM.",
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text",
+            "value": "vmbr0"
+        }
+    ]
+}

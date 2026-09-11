@@ -1,0 +1,8 @@
+{
+    "externalUuid4": "1fc769ee-a19c-48b8-ad04-b6951abe2bcf",
+    "key": "vmcpus",
+    "name": "VM CPUs",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.Text",
+    "comment": "vCPU count for hypervisor create-VM Procedures. Passed to qm create --cores. Sockets are fixed at 1."
+}

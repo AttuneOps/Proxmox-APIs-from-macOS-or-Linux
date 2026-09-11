@@ -1,0 +1,11 @@
+VM_NAME="{newWindowsMachine.fqn}"
+
+VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
+
+if [[ -z "$VMID" ]]; then
+    echo "VM not found"
+    exit 1
+fi
+
+echo "Removing installation ISO"
+qm set $VMID --ide2 none

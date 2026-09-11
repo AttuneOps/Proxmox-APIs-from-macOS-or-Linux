@@ -1,0 +1,14 @@
+{
+    "externalUuid4": "7fd90961-2a75-4eee-9f3b-96fdf0f786da",
+    "key": "newwindowsmachine",
+    "name": "New Windows Machine",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.WindowsServer",
+    "comment": "The Windows machine (or VM) being installed. FQN names the VM and the ISO.",
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.WindowsServer",
+            "winRmType": 12
+        }
+    ]
+}

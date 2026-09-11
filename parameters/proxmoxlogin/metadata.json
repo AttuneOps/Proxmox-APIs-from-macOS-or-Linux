@@ -1,8 +1,0 @@
-{
-    "externalUuid4": "f179df6f-680f-4356-b67e-cffae57ba9f6",
-    "key": "proxmoxlogin",
-    "name": "Proxmox Login",
-    "showInPlan": true,
-    "type": "c.s.s.b.phv.LinOsCred",
-    "comment": "Proxmox SSH/API user."
-}

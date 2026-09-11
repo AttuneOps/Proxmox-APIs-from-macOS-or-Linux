@@ -1,0 +1,14 @@
+{
+    "comment": "Firmware of the VM being created. Set to `BIOS` (SeaBIOS) or `UEFI` (OVMF). Must match the ISO. Default `UEFI`.",
+    "defaultValue": [
+        {
+            "type": "attune.parameter.default.Text",
+            "value": "UEFI"
+        }
+    ],
+    "externalUuid4": "fa1e18ea-f848-47db-ad9a-a7341373b863",
+    "key": "biosoruefi",
+    "name": "BIOS or UEFI",
+    "showInPlan": true,
+    "type": "c.s.s.b.phv.Text"
+}

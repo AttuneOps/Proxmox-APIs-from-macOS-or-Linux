@@ -1,5 +1,13 @@
 VM_NAME='{newOsNode.fqn}'
 ISO_VOLID='local:iso/unattended_{newOsNode.fqn}.iso'
+BOOT="$(echo "{biosOrUefi}" | tr "[:lower:]" "[:upper:]")"
+
+echo "biosOrUefi = $BOOT"
+
+if [ "$BOOT" != "BIOS" ] && [ "$BOOT" != "UEFI" ]; then
+    echo "biosOrUefi must be BIOS or UEFI, got: {biosOrUefi}" >&2
+    exit 1
+fi
 
 EXISTING_VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
 
@@ -10,20 +18,38 @@ fi
 
 NEXT_VMID=$(pvesh get /cluster/nextid)
 
-echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID"
+echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID ($BOOT)"
 
-qm create $NEXT_VMID \
-    --name $VM_NAME \
-    --bios seabios \
-    --ostype l26 \
-    --cores {cpuCores} \
-    --sockets {cpuSockets} \
-    --memory {memory} \
-    --scsi0 local-lvm:{diskSize},iothread=1 \
-    --scsihw virtio-scsi-single \
-    --net0 virtio,bridge=vmbr0,firewall=1 \
-    --ide2 $ISO_VOLID,media=cdrom \
-    --boot order=scsi0\;ide2 \
-    --agent 1
+if [ "$BOOT" = "UEFI" ]; then
+    qm create $NEXT_VMID \
+        --name $VM_NAME \
+        --bios ovmf \
+        --machine q35 \
+        --ostype l26 \
+        --cores {cpuCores} \
+        --sockets {cpuSockets} \
+        --memory {memory} \
+        --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=1 \
+        --scsi0 local-lvm:{diskSize},iothread=1 \
+        --scsihw virtio-scsi-single \
+        --net0 virtio,bridge=vmbr0,firewall=1 \
+        --ide2 $ISO_VOLID,media=cdrom \
+        --boot order=scsi0\;ide2 \
+        --agent 1
+else
+    qm create $NEXT_VMID \
+        --name $VM_NAME \
+        --bios seabios \
+        --ostype l26 \
+        --cores {cpuCores} \
+        --sockets {cpuSockets} \
+        --memory {memory} \
+        --scsi0 local-lvm:{diskSize},iothread=1 \
+        --scsihw virtio-scsi-single \
+        --net0 virtio,bridge=vmbr0,firewall=1 \
+        --ide2 $ISO_VOLID,media=cdrom \
+        --boot order=scsi0\;ide2 \
+        --agent 1
+fi
 
 echo "VM created successfully with VMID: $NEXT_VMID"

@@ -1,4 +1,4 @@
-VM_NAME="{newOsNode.fqn}"
+VM_NAME="{newMachine.fqn}"
 
 VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
 

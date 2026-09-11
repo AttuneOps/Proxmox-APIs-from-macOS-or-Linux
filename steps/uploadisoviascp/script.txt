@@ -1,7 +1,7 @@
-VM_NAME="{newOsNode.fqn}"
-PVE_HOST="{proxmoxNode.ip}"
-ISO="kickstart_{newOsNode.fqn}.iso"
-ISO_PATH="{automationWorkerBaseDirectory}/$ISO"
+VM_NAME="{newMachine.fqn}"
+PVE_HOST="{proxmoxMachine.ip}"
+ISO="kickstart_{newMachine.fqn}.iso"
+ISO_PATH="{linuxWorkerDirectory}/$ISO"
 PROXMOX_USER="{proxmoxUser.user}"
 
 if [[ ! -f "$ISO_PATH" ]]; then

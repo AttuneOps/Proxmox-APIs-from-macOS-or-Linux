@@ -1,12 +1,5 @@
 {
-    "defaultValue": [
-        {
-            "domain": "localdomain", 
-            "hostname": "localhost", 
-            "ip": "127.0.0.1", 
-            "type": "attune.parameter.default.Server"
-        }
-    ], 
+    "defaultValue": [], 
     "externalUuid4": "d1469744-036c-4716-8ed2-494f7889682c", 
     "key": "newmachine", 
     "name": "New Machine", 

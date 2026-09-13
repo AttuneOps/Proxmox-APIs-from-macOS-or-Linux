@@ -38,16 +38,17 @@ if [ "$BOOT" = "UEFI" ]; then
         --agent 1
 else
     qm create $NEXT_VMID \
-        --name $VM_NAME \
+        --name "$VM_NAME" \
         --bios seabios \
-        --ostype win11 \
+        --machine pc-i440fx-9.2+pve1 \
+        --ostype win10 \
         --cores {cpuCores} \
         --sockets {cpuSockets} \
         --memory {memory} \
         --sata0 local-lvm:{diskSize} \
         --net0 e1000,bridge=vmbr0,firewall=1 \
-        --ide2 $ISO_VOLID,media=cdrom \
-        --boot order=sata0\;ide2 \
+        --ide2 "$ISO_VOLID",media=cdrom \
+        --boot "order=ide2;sata0" \
         --agent 1
 fi
 

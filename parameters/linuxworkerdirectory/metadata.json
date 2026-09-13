@@ -2,7 +2,7 @@
     "defaultValue": [
         {
             "type": "attune.parameter.default.Text", 
-            "value": "/tmp/attune/"
+            "value": "script-forge/"
         }
     ], 
     "externalUuid4": "d559daaf-aece-4473-9c7d-38cda2c7ba42", 

@@ -5,17 +5,18 @@ ISO_PATH="{linuxWorkerDirectory}/$ISO"
 PROXMOX_USER="{proxmoxUser.user}"
 
 if [[ ! -f "$ISO_PATH" ]]; then
-    echo "Error: ISO file not found: $ISO_PATH"
+    echo "Error: ISO file not found: $ISO_PATH" >&2
     exit 1
 fi
 
 echo "Copying $ISO to Proxmox via SCP..."
 
-scp -o StrictHostKeyChecking=no "$ISO_PATH" $PROXMOX_USER@$PVE_HOST:/var/lib/vz/template/iso/
-
-if [[ $? -eq 0 ]]; then
+if scp -o StrictHostKeyChecking=no \
+    "$ISO_PATH" \
+    "${PROXMOX_USER}@${PVE_HOST}:/var/lib/vz/template/iso/"
+then
     echo "ISO copied successfully: local:iso/$ISO"
 else
-    echo "Copy failed"
+    echo "Copy failed" >&2
     exit 1
 fi

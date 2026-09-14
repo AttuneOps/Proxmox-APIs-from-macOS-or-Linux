@@ -1,35 +1,13 @@
 VM_NAME='{newMachine.fqn}'
 ISO_VOLID='local:iso/unattended_{newMachine.fqn}.iso'
 BOOT="$(echo "{biosOrUefi}" | tr "[:lower:]" "[:upper:]")"
-OS_NAME="{operatingSystemName}"
-OS_NORM="$(echo "$OS_NAME" | tr "[:upper:]" "[:lower:]")"
 
 echo "biosOrUefi = $BOOT"
-echo "operatingSystemName = $OS_NAME"
 
 if [ "$BOOT" != "BIOS" ] && [ "$BOOT" != "UEFI" ]; then
     echo "biosOrUefi must be BIOS or UEFI, got: {biosOrUefi}" >&2
     exit 1
 fi
-
-# Proxmox ostype: win10 covers Windows 10 / Server 2016 / 2019.
-# win11 covers Windows 11 / Server 2022 (and newer). TPM only for win11 + UEFI.
-case "$OS_NORM" in
-    *"windows 11"*|*"server 2022"*|*"server 2025"*|*"server 2026"*)
-        OSTYPE=win11
-        WANT_TPM=1
-        ;;
-    *"windows 10"*|*"server 2016"*|*"server 2019"*)
-        OSTYPE=win10
-        WANT_TPM=0
-        ;;
-    *)
-        echo "operatingSystemName must be Windows 10, Windows 11, Windows Server 2016, Windows Server 2019, or Windows Server 2022, got: $OS_NAME" >&2
-        exit 1
-        ;;
-esac
-
-echo "Proxmox ostype = $OSTYPE (tpm=$WANT_TPM)"
 
 EXISTING_VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
 
@@ -40,41 +18,37 @@ fi
 
 NEXT_VMID=$(pvesh get /cluster/nextid)
 
-echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID ($BOOT, $OSTYPE)"
+echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID ($BOOT)"
 
-# SATA + e1000 on every SKU so the guest does not need VirtIO drivers on the ISO.
 if [ "$BOOT" = "UEFI" ]; then
-    CREATE_ARGS=(
-        --name "$VM_NAME"
-        --bios ovmf
-        --machine q35
-        --ostype "$OSTYPE"
-        --cores {cpuCores}
-        --sockets {cpuSockets}
-        --memory {memory}
-        --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=0
-        --sata0 "local-lvm:{diskSize}"
-        --sata1 "$ISO_VOLID,media=cdrom"
-        --net0 e1000,bridge=vmbr0,firewall=1
-        --boot "order=sata1;sata0"
+    qm create $NEXT_VMID \
+        --name "$VM_NAME" \
+        --bios ovmf \
+        --machine q35 \
+        --ostype win11 \
+        --cpu host \
+        --cores "{cpuCores}" \
+        --sockets "{cpuSockets}" \
+        --memory "{memory}" \
+        --sata0 local-lvm:{diskSize} \
+        --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=1 \
+        --tpmstate0 local-lvm:1,version=v2.0 \
+        --net0 virtio,bridge=vmbr0,firewall=1 \
+        --ide2 "$ISO_VOLID,media=cdrom" \
+        --boot "order=ide2;sata0" \
         --agent 1
-    )
-    if [ "$WANT_TPM" = "1" ]; then
-        CREATE_ARGS+=(--tpmstate0 local-lvm:1,version=v2.0)
-    fi
-    qm create "$NEXT_VMID" "${CREATE_ARGS[@]}"
 else
-    qm create "$NEXT_VMID" \
+    qm create $NEXT_VMID \
         --name "$VM_NAME" \
         --bios seabios \
-        --machine pc \
-        --ostype "$OSTYPE" \
+        --machine pc-i440fx-9.2+pve1 \
+        --ostype win10 \
         --cores {cpuCores} \
         --sockets {cpuSockets} \
         --memory {memory} \
-        --sata0 "local-lvm:{diskSize}" \
-        --ide2 "$ISO_VOLID,media=cdrom" \
+        --sata0 local-lvm:{diskSize} \
         --net0 e1000,bridge=vmbr0,firewall=1 \
+        --ide2 "$ISO_VOLID",media=cdrom \
         --boot "order=ide2;sata0" \
         --agent 1
 fi

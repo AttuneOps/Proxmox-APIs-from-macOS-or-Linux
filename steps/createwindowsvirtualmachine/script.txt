@@ -20,12 +20,13 @@ NEXT_VMID=$(pvesh get /cluster/nextid)
 
 echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID ($BOOT)"
 
+# ostype other: one hardware recipe for Windows 10, 11, and Server.
 if [ "$BOOT" = "UEFI" ]; then
     qm create $NEXT_VMID \
         --name "$VM_NAME" \
         --bios ovmf \
         --machine q35 \
-        --ostype win11 \
+        --ostype other \
         --cpu host \
         --cores "{cpuCores}" \
         --sockets "{cpuSockets}" \
@@ -41,14 +42,15 @@ else
     qm create $NEXT_VMID \
         --name "$VM_NAME" \
         --bios seabios \
-        --machine pc-i440fx-9.2+pve1 \
-        --ostype win10 \
-        --cores {cpuCores} \
-        --sockets {cpuSockets} \
-        --memory {memory} \
+        --machine pc \
+        --ostype other \
+        --cpu host \
+        --cores "{cpuCores}" \
+        --sockets "{cpuSockets}" \
+        --memory "{memory}" \
         --sata0 local-lvm:{diskSize} \
-        --net0 e1000,bridge=vmbr0,firewall=1 \
-        --ide2 "$ISO_VOLID",media=cdrom \
+        --net0 virtio,bridge=vmbr0,firewall=1 \
+        --ide2 "$ISO_VOLID,media=cdrom" \
         --boot "order=ide2;sata0" \
         --agent 1
 fi

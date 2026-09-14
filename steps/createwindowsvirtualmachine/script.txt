@@ -34,7 +34,7 @@ if [ "$BOOT" = "UEFI" ]; then
         --sata0 local-lvm:{diskSize} \
         --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=1 \
         --tpmstate0 local-lvm:1,version=v2.0 \
-        --net0 virtio,bridge=vmbr0,firewall=1 \
+        --net0 e1000,bridge=vmbr0,firewall=1 \
         --ide2 "$ISO_VOLID,media=cdrom" \
         --boot "order=ide2;sata0" \
         --agent 1
@@ -49,7 +49,7 @@ else
         --sockets "{cpuSockets}" \
         --memory "{memory}" \
         --sata0 local-lvm:{diskSize} \
-        --net0 virtio,bridge=vmbr0,firewall=1 \
+        --net0 e1000,bridge=vmbr0,firewall=1 \
         --ide2 "$ISO_VOLID,media=cdrom" \
         --boot "order=ide2;sata0" \
         --agent 1

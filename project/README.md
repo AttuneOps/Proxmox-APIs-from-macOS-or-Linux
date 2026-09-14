@@ -7,6 +7,7 @@ Create ISO always runs first. This Project expects the ISO named
 
 `BIOS or UEFI` (`biosOrUefi`) must match that ISO: `BIOS` creates a SeaBIOS VM;
 `UEFI` creates an OVMF VM (q35, EFI disk, and a TPM 2.0 device on Windows).
-Default `UEFI`.
+Windows UEFI leaves Secure Boot off (`pre-enrolled-keys=0`) so a rebuilt
+autounattend ISO can start. Default `UEFI`.
 
 See the [Automate Operating System Installation Guide](https://attuneops.io/docs/topics/automated_os_installation.html).

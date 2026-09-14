@@ -21,6 +21,8 @@ NEXT_VMID=$(pvesh get /cluster/nextid)
 echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID ($BOOT)"
 
 if [ "$BOOT" = "UEFI" ]; then
+    # pre-enrolled-keys=1 turns on Secure Boot. A rebuilt autounattend ISO
+    # is not signed; OVMF then starts the DVD and resets at the splash.
     qm create $NEXT_VMID \
         --name $VM_NAME \
         --bios ovmf \
@@ -29,12 +31,12 @@ if [ "$BOOT" = "UEFI" ]; then
         --cores {cpuCores} \
         --sockets {cpuSockets} \
         --memory {memory} \
-        --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=1 \
+        --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=0 \
         --tpmstate0 local-lvm:1,version=v2.0 \
         --sata0 local-lvm:{diskSize} \
+        --sata1 $ISO_VOLID,media=cdrom \
         --net0 e1000,bridge=vmbr0,firewall=1 \
-        --ide2 $ISO_VOLID,media=cdrom \
-        --boot order=sata0\;ide2 \
+        --boot order=sata1\;sata0 \
         --agent 1
 else
     qm create $NEXT_VMID \

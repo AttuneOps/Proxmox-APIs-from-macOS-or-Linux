@@ -20,7 +20,6 @@ NEXT_VMID=$(pvesh get /cluster/nextid)
 
 echo "Creating VM '$VM_NAME' with VMID: $NEXT_VMID ($BOOT)"
 
-# ostype other: one hardware recipe for Windows 10, 11, and Server.
 if [ "$BOOT" = "UEFI" ]; then
     qm create $NEXT_VMID \
         --name "$VM_NAME" \
@@ -28,29 +27,28 @@ if [ "$BOOT" = "UEFI" ]; then
         --machine q35 \
         --ostype other \
         --cpu host \
-        --cores "{cpuCores}" \
-        --sockets "{cpuSockets}" \
-        --memory "{memory}" \
+        --cores {cpuCores} \
+        --sockets {cpuSockets} \
+        --memory {memory} \
         --sata0 local-lvm:{diskSize} \
         --efidisk0 local-lvm:1,efitype=4m,pre-enrolled-keys=1 \
         --tpmstate0 local-lvm:1,version=v2.0 \
         --net0 e1000,bridge=vmbr0,firewall=1 \
-        --ide2 "$ISO_VOLID,media=cdrom" \
-        --boot "order=ide2;sata0" \
+        --ide2 "$ISO_VOLID",media=cdrom \
+        --boot "order=sata0;ide2" \
         --agent 1
 else
     qm create $NEXT_VMID \
         --name "$VM_NAME" \
         --bios seabios \
-        --machine pc \
+        --machine pc-i440fx-9.2+pve1 \
         --ostype other \
-        --cpu host \
-        --cores "{cpuCores}" \
-        --sockets "{cpuSockets}" \
-        --memory "{memory}" \
+        --cores {cpuCores} \
+        --sockets {cpuSockets} \
+        --memory {memory} \
         --sata0 local-lvm:{diskSize} \
         --net0 e1000,bridge=vmbr0,firewall=1 \
-        --ide2 "$ISO_VOLID,media=cdrom" \
+        --ide2 "$ISO_VOLID",media=cdrom \
         --boot "order=ide2;sata0" \
         --agent 1
 fi

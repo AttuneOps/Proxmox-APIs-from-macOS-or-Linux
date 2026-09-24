@@ -22,7 +22,7 @@
             "stepKey": "iswindowsup"
         }, 
         {
-            "stepKey": "unmountiso"
+            "stepKey": "unmountanddeleteiso"
         }
     ], 
     "name": "Build Windows Machine on Proxmox", 

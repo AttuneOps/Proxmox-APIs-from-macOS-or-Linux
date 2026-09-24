@@ -1,4 +1,6 @@
 VM_NAME="{newMachine.fqn}"
+ISO="unattended_{newMachine.fqn}.iso"
+ISO_VOLID="local:iso/$ISO"
 
 VMID=$(qm list | grep -w "$VM_NAME" | awk '{print $1}')
 
@@ -9,3 +11,6 @@ fi
 
 echo "Removing installation ISO"
 qm set $VMID --ide2 none
+
+echo "Deleting $ISO_VOLID"
+pvesm free "$ISO_VOLID"

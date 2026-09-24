@@ -22,7 +22,7 @@
             "stepKey": "waitforlinuxinstallationtocomplete"
         }, 
         {
-            "stepKey": "unmountiso"
+            "stepKey": "unmountanddeleteiso"
         }
     ], 
     "name": "Build Linux Machine on Proxmox", 
